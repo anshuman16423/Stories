@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog Feed</title>
+    <style>
+        a:link, a:visited {
+      background-color: #f44336;
+      color: white;
+      padding: 14px 25px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+    }
+    a:hover, a:active {
+      background-color: red;
+    }
+    </style>
+</head>
+<body>
+    <h3>Welcome {{ username }} <a href="login/logout">logout</a></h3>
+    <a href="../album">TODOS</a>
+    <a href="blog/addBlog">ADD BLOG</a>
+    <a href="blog/manage">MANAGE YOUR BLOGS</a>
+    <h4>Your Feed</h4>
+    {% for i in objects %}
+        <h1>{{ i.title }}</h1>
+        <img src="{{ i.image.url }}">
+        <h4>author: {{ i.user }}</h4>
+        <p>{{  i.body }}</p>
+    {%  endfor %}
+</body>
+</html>
