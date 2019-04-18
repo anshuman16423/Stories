@@ -2,7 +2,7 @@ from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
 from forms import BlogEntry
 from models import blog
-from datetime import datetime
+
 
 
 
@@ -39,5 +39,13 @@ def create_blog(request):
     context = dict()
     context['form'] = form
     temp = loader.get_template('blog/register.html')
+
+    return HttpResponse(temp.render(context, request))
+
+def show_blog(request, blog_id):
+    lt = blog.objects.get(id1 = blog_id)
+
+    context = {'blog': lt, 'username': request.session['username']}
+    temp = loader.get_template('blog/show_blog.html')
 
     return HttpResponse(temp.render(context, request))
