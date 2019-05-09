@@ -34,7 +34,7 @@ def create_blog(request):
             ent.image = form.cleaned_data['blogPic']
 
             ent.save()
-            return HttpResponseRedirect('../blog')
+            return HttpResponseRedirect('../')
     form = BlogEntry()
     context = dict()
     context['form'] = form
