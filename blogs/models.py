@@ -9,7 +9,6 @@ class blog(models.Model):
     user = models.CharField(max_length=128)
     title = models.CharField(max_length=128)
     body = models.CharField(max_length=20000)
-
     image = models.FileField()
 
 

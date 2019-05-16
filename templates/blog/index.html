@@ -1,31 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <title>Blog Feed</title>
     <style>
-        a:link, a:visited {
-      background-color: #f44336;
-      color: white;
-      padding: 14px 25px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-    }
-    a:hover, a:active {
-      background-color: red;
-    }
+       body {
+            background-image: url("https://2.bp.blogspot.com/-rVIH7_G7SP4/UDTAnop_XOI/AAAAAAAACUM/xUC7SAmby9k/s1600/light_background_for_blog_or_site.jpg");
+
+            background-position: center;
+            background-attachment: fixed;
+            background-size: cover;
+            }
+        .user
+        {
+            padding-left: 85%;
+
+        }
+        .link1
+        {
+            background-color: #f44336;
+            color: white;
+            padding: 5px 12px;
+            text-align: center;
+            text-decoration: none;
+        }
+        .link2
+        {
+            font-size: 30px;
+            background-color: #49e4f4;
+            color: black;
+            padding: 5px 12px;
+            text-align: center;
+            text-decoration: none;
+        }
+        .cont
+        {
+            margin-left: 25%;
+            margin-right:25%;
+        }
+        img
+        {
+            width: 50%;
+
+        }
+
+
+
+
     </style>
 </head>
 <body>
-    <h3>Welcome {{ username }} <a href="login/logout">logout</a></h3>
-    <a href="blog/addBlog">ADD BLOG</a>
-    <a href="blog/manage">MANAGE YOUR BLOGS</a>
-    <h4>Your Feed</h4>
+    <div class='user'><h3>Welcome {{ username }} <a class = 'link1' href="login/logout">logout</a></h3></div>
+    <a class = "link2" href="blog/addBlog">ADD BLOG</a>
+
+    <center><h1>YOUR FEED</h1></center>
+    <hr>
+    <div class = 'cont'>
     {% for i in objects %}
+
         <h1><a href ="blog/show/{{ i.id1 }}">{{ i.title }}</a></h1>
         <img src="{{ i.image.url }}">
         <h4>author: {{ i.user }}</h4>
     {%  endfor %}
+    </div>
 </body>
 </html>

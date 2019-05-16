@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <title>Create Blog</title>
     <style>
@@ -19,11 +20,20 @@
     </style>
 </head>
 <body>
-    <h1>Create your blogs here</h1>
+    <center>
+    <h1>Create your story</h1>
+    </center>
+    <ul>
+        <li>Give a suitable title to your story</li>
+        <li>Add a realtable picture or quote picture</li>
+        <li>Finally add content to your Story</li>
+    </ul>
+    <center>
     <form action="addBlog" enctype="multipart/form-data" method="post",>
         {% csrf_token %}
         {{ form }}
         <input type="submit">
     </form>
+    </center>
 </body>
 </html>

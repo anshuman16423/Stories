@@ -5,8 +5,6 @@ from models import blog
 
 
 
-
-# Create your views here.
 def index(request):
     if 'username' not in request.session:
         return HttpResponseRedirect('../login')
