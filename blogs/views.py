@@ -2,8 +2,7 @@ from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
 from forms import BlogEntry
 from models import blog
-
-
+from markdown2 import Markdown
 
 def index(request):
     if 'username' not in request.session:
@@ -18,6 +17,7 @@ def index(request):
 
     return HttpResponse(temp.render(context, request))
 
+
 def create_blog(request):
     if 'username' not in request.session:
         return HttpResponseRedirect('../login')
@@ -28,7 +28,21 @@ def create_blog(request):
             ent = blog()
             ent.user = request.session['username']
             ent.title = form.cleaned_data['blogTitle']
-            ent.body = form.cleaned_data['blogContent']
+            text = form.cleaned_data['blogContent']
+
+            con = Markdown()
+            ent.body = con.convert(text)
+            """    
+            text_new = '<ul>'
+            for i in text:
+                j = i.strip()
+                if j:
+                    text_new += '<li>'
+                    text_new += j
+                    text_new += '</li>'
+
+            ent.body = text_new
+            """
             ent.image = form.cleaned_data['blogPic']
 
             ent.save()
@@ -40,9 +54,9 @@ def create_blog(request):
 
     return HttpResponse(temp.render(context, request))
 
-def show_blog(request, blog_id):
-    lt = blog.objects.get(id1 = blog_id)
 
+def show_blog(request, blog_id):
+    lt = blog.objects.get(id1=blog_id)
     context = {'blog': lt, 'username': request.session['username']}
     temp = loader.get_template('blog/show_blog.html')
 
