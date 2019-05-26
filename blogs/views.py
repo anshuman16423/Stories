@@ -32,17 +32,6 @@ def create_blog(request):
 
             con = Markdown()
             ent.body = con.convert(text)
-            """    
-            text_new = '<ul>'
-            for i in text:
-                j = i.strip()
-                if j:
-                    text_new += '<li>'
-                    text_new += j
-                    text_new += '</li>'
-
-            ent.body = text_new
-            """
             ent.image = form.cleaned_data['blogPic']
 
             ent.save()
